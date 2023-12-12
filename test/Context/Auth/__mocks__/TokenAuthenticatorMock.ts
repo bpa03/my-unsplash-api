@@ -5,28 +5,35 @@ import { type TokenAuthenticator } from '../../../../src/Context/Auth/domain/Tok
 
 export class TokenAuthenticatorMock implements TokenAuthenticator {
   private readonly verifyMock: jest.Mock;
-  private readonly crateMock: jest.Mock;
+  private readonly createMock: jest.Mock;
 
   constructor () {
-    this.crateMock = jest.fn();
+    this.createMock = jest.fn();
     this.verifyMock = jest.fn();
   }
 
-  async verify (token: JwtToken): Promise<boolean> {
+  async verify (token: JwtToken): Promise<void> {
     await this.verifyMock(token);
-    return true;
   };
 
   async create (payload: unknown): Promise<Token> {
-    await this.crateMock(payload);
+    await this.createMock(payload);
     return new Token({ email: new UserEmail('example@gmail.com'), token: new JwtToken('some-token') });
   };
 
+  assertVerifyHaveBeenCalled (): void {
+    expect(this.verifyMock).toHaveBeenCalledTimes(1);
+  }
+
+  assertVerifyHaveBeenCalledWith (token: JwtToken): void {
+    expect(this.verifyMock).toHaveBeenLastCalledWith(token);
+  }
+
   assertCreateHaveBeenCalled (): void {
-    expect(this.crateMock).toHaveBeenCalledTimes(1);
+    expect(this.createMock).toHaveBeenCalledTimes(1);
   }
 
   assertCreateHaveBeenCalledWith (payload: unknown): void {
-    expect(this.crateMock).toHaveBeenCalledWith(payload);
+    expect(this.createMock).toHaveBeenCalledWith(payload);
   }
 }
