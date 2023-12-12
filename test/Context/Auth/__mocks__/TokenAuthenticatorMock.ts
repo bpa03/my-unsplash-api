@@ -13,7 +13,7 @@ export class TokenAuthenticatorMock implements TokenAuthenticator {
   }
 
   async verify (token: JwtToken): Promise<void> {
-    await this.verifyMock(token);
+    await this.verifyMock(token.value);
   };
 
   async create (payload: unknown): Promise<Token> {
@@ -25,8 +25,8 @@ export class TokenAuthenticatorMock implements TokenAuthenticator {
     expect(this.verifyMock).toHaveBeenCalledTimes(1);
   }
 
-  assertVerifyHaveBeenCalledWith (token: JwtToken): void {
-    expect(this.verifyMock).toHaveBeenLastCalledWith(token);
+  assertVerifyHaveBeenCalledWith (jwtToken: string): void {
+    expect(this.verifyMock).toHaveBeenLastCalledWith(jwtToken);
   }
 
   assertCreateHaveBeenCalled (): void {

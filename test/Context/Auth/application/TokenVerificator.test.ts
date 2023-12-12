@@ -1,5 +1,4 @@
 import { TokenVerificator } from '../../../../src/Context/Auth/application/verify/TokenVerificator';
-import { JwtToken } from '../../../../src/Context/Auth/domain/JwtToken';
 import { TokenAuthenticatorMock } from '../__mocks__/TokenAuthenticatorMock';
 
 let tokenVerificator: TokenVerificator;
@@ -10,10 +9,10 @@ beforeEach(() => {
   tokenVerificator = new TokenVerificator(authenticator);
 });
 
-describe('Token Creator', () => {
-  test('Should create a token from a given payload', async () => {
+describe('Token Verificator', () => {
+  test('Should validate jwt token from a given request', async () => {
     const request = {
-      jwtToken: new JwtToken('some-token')
+      jwtToken: 'some-token'
     };
 
     await tokenVerificator.exec(request);
