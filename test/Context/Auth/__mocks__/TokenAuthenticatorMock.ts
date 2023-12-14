@@ -16,8 +16,8 @@ export class TokenAuthenticatorMock implements TokenAuthenticator {
     await this.verifyMock(token.value);
   };
 
-  async create (payload: unknown): Promise<Token> {
-    await this.createMock(payload);
+  async create ({ userEmail, payload }: { userEmail: UserEmail, payload: unknown }): Promise<Token> {
+    await this.createMock({ userEmail, payload });
     return new Token({ email: new UserEmail('example@gmail.com'), token: new JwtToken('some-token') });
   };
 

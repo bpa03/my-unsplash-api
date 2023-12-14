@@ -1,5 +1,5 @@
 import { TokenCreator } from '../../../../src/Context/Auth/application/create/TokenCreator';
-import { Token } from '../../../../src/Context/Auth/domain/Token';
+import { UserEmail } from '../../../../src/Context/Users/domain/UserEmail';
 import { TokenAuthenticatorMock } from '../__mocks__/TokenAuthenticatorMock';
 
 let tokenCreator: TokenCreator;
@@ -13,13 +13,13 @@ beforeEach(() => {
 describe('Token Creator', () => {
   test('Should create a token from a given payload', async () => {
     const payload = 'some-payload';
-    const email = 'some-email';
+    const email = 'example@email.com';
     const request = { email, payload };
+    const parameters = { userEmail: new UserEmail(email), payload };
 
-    const token = await tokenCreator.exec(request);
-    expect(token).toBeInstanceOf(Token);
+    await tokenCreator.exec(request);
 
     authenticator.assertCreateHaveBeenCalled();
-    authenticator.assertCreateHaveBeenCalledWith(request);
+    authenticator.assertCreateHaveBeenCalledWith(parameters);
   });
 });
