@@ -4,7 +4,7 @@ export class UserGender {
   readonly value: string;
   readonly validValues = ['male', 'female'];
 
-  constructor (value: 'male' | 'female') {
+  constructor (value: string) {
     this.value = value;
   }
 
