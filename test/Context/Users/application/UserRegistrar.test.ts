@@ -18,7 +18,6 @@ describe('User Registrar', () => {
     const user = User.fromPrimitives(request);
 
     await registrar.exec(request);
-    await repository.create(user);
     repository.assertCreateHaveBeenCalledWith(user);
   });
 
@@ -28,7 +27,6 @@ describe('User Registrar', () => {
       const user = User.fromPrimitives(request);
 
       await registrar.exec(request);
-      await repository.create(user);
       repository.assertCreateHaveBeenCalledWith(user);
     }).rejects.toThrow(UserEmailIsInvalid);
   });
