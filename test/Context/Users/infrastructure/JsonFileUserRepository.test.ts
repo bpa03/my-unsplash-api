@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker';
 import { JsonFileUserRepository } from '../../../../src/Context/Users/infrastructure/JsonFileUserRepository';
 import { type UserRepository } from '../../../../src/Context/Users/domain/UserRepository';
 import { User } from '../../../../src/Context/Users/domain/User';
+import { UserEmail } from '../../../../src/Context/Users/domain/UserEmail';
 
 let repository: UserRepository;
 
@@ -20,5 +21,12 @@ describe('Json File User Repository', () => {
 
     const user = await repository.searchById(expectedUser.id);
     expect(expectedUser).toEqual(user);
+  });
+
+  test('Should get a user by him email', async () => {
+    const email = new UserEmail('test@gmail.com');
+
+    const user = await repository.searchByEmail(email);
+    expect(user).toBeInstanceOf(User);
   });
 });

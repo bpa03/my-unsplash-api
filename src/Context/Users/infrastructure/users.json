@@ -1,1 +1,44 @@
-[{"id":"4c239ac9-11c1-4777-adca-a23e42b1cf55","email":"some_email@example.com","password":"some-password","name":null,"lastname":null}]
+[
+  {
+    "id": "4c239ac9-11c1-4777-adca-a23e42b1cf55",
+    "email": "some_email@example.com",
+    "password": "some-password",
+    "name": null,
+    "lastname": null
+  },
+  {
+    "id": "d47c23d6-173c-49b5-9971-0d3d05c6d639",
+    "email": "some_email@example.com",
+    "password": "some-password",
+    "name": null,
+    "lastname": null
+  },
+  {
+    "id": "13d5d513-0a66-4900-a51b-55a635689ec5",
+    "email": "some_email@example.com",
+    "password": "some-password",
+    "name": null,
+    "lastname": null
+  },
+  {
+    "id": "8d10d4c3-4409-4936-9048-1d355d22fb05",
+    "email": "some_email@example.com",
+    "password": "some-password",
+    "name": null,
+    "lastname": null
+  },
+  {
+    "id": "8d10d4c3-4409-4936-9048-1d355d22fb32",
+    "email": "test@gmail.com",
+    "password": "some-password",
+    "name": null,
+    "lastname": null
+  },
+  {
+    "id": "b8aa2004-3c1d-4e85-ab19-a38dfd8c6b3d",
+    "email": "some_email@example.com",
+    "password": "some-password",
+    "name": null,
+    "lastname": null
+  }
+]
