@@ -16,6 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Generate PKCS8 private key and public key
+        uses: openssl genrsa -out keypair.pem 2048 && openssl rsa -in keypair.pem -pubout -out publickey.crt && openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in keypair.pem -out pkcs8.key
+
       - name: Node.js setup ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
