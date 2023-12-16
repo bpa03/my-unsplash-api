@@ -1,10 +1,10 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { type UserRepository } from '../domain/UserRepository';
-import { type Nullable } from '../../Shared/Nullable';
-import { User } from '../domain/User';
-import { type UserEmail } from '../domain/UserEmail';
-import { type UserId } from '../domain/UserId';
+import { type UserRepository } from '../../domain/UserRepository';
+import { type Nullable } from '../../../Shared/domain/Nullable';
+import { User } from '../../domain/User';
+import { type UserEmail } from '../../domain/UserEmail';
+import { type UserId } from '../../domain/UserId';
 
 export interface StoredUser {
   id: string

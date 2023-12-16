@@ -1,4 +1,4 @@
-import { type Nullable } from '../../../Shared/Nullable';
+import { type Nullable } from '../../../Shared/domain/Nullable';
 import { type User } from '../../domain/User';
 import { UserEmail } from '../../domain/UserEmail';
 import { type UserRepository } from '../../domain/UserRepository';

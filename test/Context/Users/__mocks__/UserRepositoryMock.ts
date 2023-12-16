@@ -1,4 +1,4 @@
-import { type Nullable } from '../../../../src/Context/Shared/Nullable';
+import { type Nullable } from '../../../../src/Context/Shared/domain/Nullable';
 import { User } from '../../../../src/Context/Users/domain/User';
 import { type UserEmail } from '../../../../src/Context/Users/domain/UserEmail';
 import { type UserId } from '../../../../src/Context/Users/domain/UserId';

@@ -1,3 +1,3 @@
-import { StringValueObject } from '../../Shared/value-object/StringValueObject';
+import { StringValueObject } from '../../Shared/domain/value-object/StringValueObject';
 
 export class JwtToken extends StringValueObject {};
