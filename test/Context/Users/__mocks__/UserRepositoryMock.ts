@@ -1,5 +1,5 @@
 import { type Nullable } from '../../../../src/Context/Shared/Nullable';
-import { type User } from '../../../../src/Context/Users/domain/User';
+import { User } from '../../../../src/Context/Users/domain/User';
 import { type UserEmail } from '../../../../src/Context/Users/domain/UserEmail';
 import { type UserId } from '../../../../src/Context/Users/domain/UserId';
 import { type UserRepository } from '../../../../src/Context/Users/domain/UserRepository';
@@ -22,6 +22,14 @@ export class UserRepositoryMock implements UserRepository {
 
   async searchByEmail (email: UserEmail): Promise<Nullable<User>> {
     await this.searchByEmailMock(email);
+    if (email.value === 'test@gmail.com') {
+      return User.fromPrimitives({
+        id: '4c239ac9-11c1-4777-adca-a23e42b1cf55',
+        email: 'test@gmail.com',
+        password: '12345678'
+      });
+    }
+
     return null;
   };
 
@@ -31,5 +39,9 @@ export class UserRepositoryMock implements UserRepository {
 
   assertCreateHaveBeenCalledWith (expected: User): void {
     expect(this.createMock).toHaveBeenCalledWith(expected);
+  }
+
+  assertSearchByEmailHaveBeenCalledWith (expected: UserEmail): void {
+    expect(this.searchByEmailMock).toHaveBeenCalledWith(expected);
   }
 }
