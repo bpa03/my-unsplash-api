@@ -3,13 +3,17 @@ import { UserRegistrar } from '../../../../src/Context/Users/application/registr
 import { User } from '../../../../src/Context/Users/domain/User';
 import { UserRepositoryMock } from '../__mocks__/UserRepositoryMock';
 import { UserEmailIsInvalid } from '../../../../src/Context/Users/domain/UserEmailIsInvalid';
+import { UserFinder } from '../../../../src/Context/Users/application/finder/UserFinder';
+import { UserAlreadyExists } from '../../../../src/Context/Users/domain/UserDup';
 
 let registrar: UserRegistrar;
+let finder: UserFinder;
 let repository: UserRepositoryMock;
 
 beforeEach(() => {
   repository = new UserRepositoryMock();
-  registrar = new UserRegistrar(repository);
+  finder = new UserFinder(repository);
+  registrar = new UserRegistrar(repository, finder);
 });
 
 describe('User Registrar', () => {
@@ -29,5 +33,15 @@ describe('User Registrar', () => {
       await registrar.exec(request);
       repository.assertCreateHaveBeenCalledWith(user);
     }).rejects.toThrow(UserEmailIsInvalid);
+  });
+
+  test('Should throw error if user already exists', async () => {
+    await expect(async () => {
+      const request = { email: 'test@gmail.com', password: '12345678', id: faker.string.uuid() };
+      const user = User.fromPrimitives(request);
+
+      await registrar.exec(request);
+      repository.assertCreateHaveBeenCalledWith(user);
+    }).rejects.toThrow(UserAlreadyExists);
   });
 });
