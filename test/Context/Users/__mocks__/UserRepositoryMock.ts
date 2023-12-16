@@ -32,4 +32,8 @@ export class UserRepositoryMock implements UserRepository {
   assertCreateHaveBeenCalledWith (expected: User): void {
     expect(this.createMock).toHaveBeenCalledWith(expected);
   }
+
+  assertSearchByEmailHaveBeenCalledWith (expected: UserEmail): void {
+    expect(this.searchByEmailMock).toHaveBeenCalledWith(expected);
+  }
 }
