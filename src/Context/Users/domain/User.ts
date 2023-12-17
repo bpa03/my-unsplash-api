@@ -1,7 +1,7 @@
 import { UserId } from './UserId';
 import { UserEmail } from './UserEmail';
 import { UserGender } from './UserGender';
-import { AggregateRoot } from '../../Shared/AggregateRoot';
+import { AggregateRoot } from '../../Shared/domain/AggregateRoot';
 
 export class User extends AggregateRoot {
   readonly id: UserId;
@@ -32,7 +32,7 @@ export class User extends AggregateRoot {
     };
   }
 
-  static fromPrimitives ({ email, id, lastname, name, gender, password }: { id: string, email: string, name?: string, lastname?: string, gender?: string, password: string }): User {
+  static fromPrimitives ({ email, id, lastname, name, gender, password }: { id: string, email: string, name?: string | null, lastname?: string | null, gender?: string | null, password: string }): User {
     return new User({
       id: new UserId(id),
       email: new UserEmail(email),

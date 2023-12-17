@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { JsonFileUserRepository } from '../../../../src/Context/Users/infrastructure/JsonFileUserRepository';
+import { JsonFileUserRepository } from '../../../../src/Context/Users/infrastructure/persistence/JsonFileUserRepository';
 import { type UserRepository } from '../../../../src/Context/Users/domain/UserRepository';
 import { User } from '../../../../src/Context/Users/domain/User';
 import { UserEmail } from '../../../../src/Context/Users/domain/UserEmail';

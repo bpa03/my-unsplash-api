@@ -1,6 +1,6 @@
 /* eslint-disable no-control-regex */
 import { UserEmailIsInvalid } from './UserEmailIsInvalid';
-import { StringValueObject } from '../../Shared/value-object/StringValueObject';
+import { StringValueObject } from '../../Shared/domain/value-object/StringValueObject';
 
 export class UserEmail extends StringValueObject {
   constructor (value: string) {
