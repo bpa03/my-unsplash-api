@@ -1,6 +1,7 @@
 import express from 'express';
 import type * as http from 'http';
 import helmet from 'helmet';
+import router from './routes';
 
 export class Server {
   private readonly express: express.Express;
@@ -16,14 +17,16 @@ export class Server {
     this.express.use(helmet.noSniff());
     this.express.use(helmet.hidePoweredBy());
     this.express.use(helmet.frameguard({ action: 'deny' }));
+    this.express.use(router);
   }
 
   async listen (): Promise<void> {
-    await new Promise(resolve => {
+    await new Promise<void>(resolve => {
       const env = this.express.get('env') as string;
       this.httpServer = this.express.listen(this.port, () => {
         console.log(`Backend App is running at http://localhost:${this.port} in ${env} mode`);
         console.log('Press CTRL-C to stop\n');
+        resolve();
       });
     });
   }
