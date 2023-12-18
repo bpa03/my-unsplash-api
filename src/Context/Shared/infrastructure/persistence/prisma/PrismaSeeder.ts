@@ -22,7 +22,7 @@ export class PrismaSeeder {
           data: [
             {
               id: uuid(),
-              email: 'test@email.com',
+              email: 'test@gmail.com',
               password: '12345678'
             }
           ]
