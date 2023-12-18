@@ -26,7 +26,7 @@ describe('Prisma User Repository', () => {
   });
 
   test('Should find a user by his email', async () => {
-    const userEmail = new UserEmail('test@email.com');
+    const userEmail = new UserEmail('test@gmail.com');
     const user = await repository.searchByEmail(userEmail);
 
     expect(user).toBeInstanceOf(User);
