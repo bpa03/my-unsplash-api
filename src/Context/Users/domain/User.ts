@@ -42,4 +42,8 @@ export class User extends AggregateRoot {
       lastname: lastname ?? null
     });
   }
+
+  passwordMatches (password: string): boolean {
+    return this.password === password;
+  }
 }
