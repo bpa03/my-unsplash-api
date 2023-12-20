@@ -1,3 +1,4 @@
+import { compare } from 'bcrypt';
 import { UserId } from './UserId';
 import { UserEmail } from './UserEmail';
 import { UserGender } from './UserGender';
@@ -43,7 +44,7 @@ export class User extends AggregateRoot {
     });
   }
 
-  passwordMatches (password: string): boolean {
-    return this.password === password;
+  async passwordMatches (password: string): Promise<boolean> {
+    return await compare(password, this.password);
   }
 }

@@ -1,3 +1,4 @@
+import { genSalt, hash } from 'bcrypt';
 import { type Nullable } from '../../../../src/Context/Shared/domain/Nullable';
 import { User } from '../../../../src/Context/Users/domain/User';
 import { type UserEmail } from '../../../../src/Context/Users/domain/UserEmail';
@@ -23,10 +24,13 @@ export class UserRepositoryMock implements UserRepository {
   async searchByEmail (email: UserEmail): Promise<Nullable<User>> {
     await this.searchByEmailMock(email);
     if (email.value === 'test@gmail.com') {
+      const salts = await genSalt(10);
+      const hashed = await hash('12345678', salts);
+
       return User.fromPrimitives({
         id: '4c239ac9-11c1-4777-adca-a23e42b1cf55',
         email: 'test@gmail.com',
-        password: '12345678'
+        password: hashed
       });
     }
 
