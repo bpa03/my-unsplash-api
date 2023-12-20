@@ -22,7 +22,8 @@ describe('Prisma User Repository', () => {
     await repository.create(expectedUser);
     const user = await repository.searchById(expectedUser.id);
 
-    expect(user).toStrictEqual(expectedUser);
+    expect(user?.id.value).toEqual(expectedUser.id.value);
+    expect(user?.email.value).toEqual(expectedUser.email.value);
   });
 
   test('Should find a user by his email', async () => {

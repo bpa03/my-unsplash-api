@@ -12,7 +12,7 @@ export class UserLogin {
   async exec (request: UserLoginRequest): Promise<Token> {
     const { email, password } = request;
     const user = await this.ensureUserExists(email);
-    this.ensureCredentialsMatches(password, user);
+    await this.ensureCredentialsMatches(password, user);
 
     const token = await this.creator.exec({ email, payload: { email } });
     return token;
@@ -27,8 +27,8 @@ export class UserLogin {
     return user;
   }
 
-  ensureCredentialsMatches (password: string, user: User): void {
-    if (!user.passwordMatches(password)) {
+  async ensureCredentialsMatches (password: string, user: User): Promise<void> {
+    if (!(await user.passwordMatches(password))) {
       throw new UserInvalidCredentials('Credentials are invalid');
     }
   }

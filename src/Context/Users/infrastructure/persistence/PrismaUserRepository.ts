@@ -1,3 +1,4 @@
+import { genSalt, hash } from 'bcrypt';
 import { type Nullable } from '../../../Shared/domain/Nullable';
 import { PrismaRepository } from '../../../Shared/infrastructure/persistence/prisma/PrismaRepository';
 import { User } from '../../domain/User';
@@ -43,6 +44,15 @@ export class PrismaUserRepository extends PrismaRepository implements UserReposi
   async create (user: User): Promise<void> {
     const client = await this.client();
     const data = user.toPrimitives();
-    await client.user.create({ data });
+
+    const salts = await genSalt(10);
+    const hashed = await hash(data.password, salts);
+
+    await client.user.create({
+      data: {
+        ...data,
+        password: hashed
+      }
+    });
   };
 }
