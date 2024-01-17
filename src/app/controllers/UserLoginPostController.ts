@@ -18,7 +18,7 @@ export class UserLoginPostController implements Controller {
       const { email, password } = req.body;
       const token = await this.login.exec({ email, password });
 
-      res.status(httpStatus.OK).json({ access: token.token, email: token.email });
+      res.status(httpStatus.OK).json({ access: token.token.value, email: token.email.value });
     } catch (error) {
       if (error instanceof UserNotExist) {
         res.status(httpStatus.UNAUTHORIZED).json({ msg: error.message });

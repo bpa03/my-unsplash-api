@@ -1,6 +1,7 @@
 import { UserFinder } from '../../../../src/Context/Users/application/finder/UserFinder';
-import { UserEmail } from '../../../../src/Context/Users/domain/UserEmail';
 import { UserRepositoryMock } from '../__mocks__/UserRepositoryMock';
+import { UserEmailMother } from '../domain/UserEmailMother';
+import { UserFinderRequestMother } from './UserFinderRequestMother';
 
 let finder: UserFinder;
 let repository: UserRepositoryMock;
@@ -12,8 +13,8 @@ beforeEach(() => {
 
 describe('User Finder', () => {
   test('Should find a user', async () => {
-    const request = { email: 'test@gmail.com' };
-    const email = new UserEmail(request.email);
+    const request = UserFinderRequestMother.random();
+    const email = UserEmailMother.create(request.email);
 
     await finder.exec(request);
     repository.assertSearchByEmailHaveBeenCalledWith(email);
